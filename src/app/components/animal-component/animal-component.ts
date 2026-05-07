@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { AnimalService } from '../../services/animal-service';
 import { CommonModule } from '@angular/common';
 
@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
 export class AnimalComponent {
     animalList:any= [];
 
-constructor(private animalService:AnimalService) {}
+constructor(private animalService:AnimalService, private cd: ChangeDetectorRef) {}
 
 getAllAnimals() {
  this.animalService.getAllAnimalsData().subscribe((data: {}) => {
@@ -22,4 +22,7 @@ getAllAnimals() {
 this.getAllAnimals();
  }
 
+ ngOnChanges() {
+    this.getAllAnimals();
+  }
 }
