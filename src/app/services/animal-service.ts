@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+
 @Injectable({
   providedIn: 'root',
 })
@@ -13,6 +14,12 @@ export class AnimalService {
   getAllAnimalsData(): Observable<any> {
     return this.http.get<any>(this.apiUri)
   }
+  newAnimal(data: any): Observable<any> {
+    return this.http.post<any>(
+      this.apiUri,
+      data,
+      {headers: this.httpOptions});
+  }
 
 }
 
